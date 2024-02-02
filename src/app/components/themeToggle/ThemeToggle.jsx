@@ -10,7 +10,7 @@ const ThemeToggle = () => {
     <>
       <div
         onClick={toggle}
-        style={theme === "dark" ? {background: "white"} : {background: "#110618"}}
+        style={theme === "dark" ? {background: "#f1f1f1"} : {background: "#110618"}}
         className="w-[70px] h-[30px] relative rounded-full cursor-pointer flex items-center justify-between px-2"
       >
         <Image src="/images/moon.png" alt="moon" width={15} height={15} />

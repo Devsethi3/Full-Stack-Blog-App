@@ -1,9 +1,11 @@
+import Featured from "./components/featured/Featured";
+
 const page = () => {
   return (
     <>
-      <div>Home Page</div>
+      <Featured />
     </>
-  );  
+  );
 };
 
 export default page;

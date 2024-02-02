@@ -9,26 +9,36 @@
 :root {
   --bg: white;
   --textColor: black;
+  --primary-bg: #8533bc;
   --softBg: #f0f0f0;
   --softTextColor: #626262;
 }
 .dark {
   --bg: #0f172a;
   --textColor: #ddd;
+  --primary-bg: #8533bc;
+
   --softBg: #2e1f3a;
   --softTextColor: #a6a6a6;
 }
-html,
 body {
-  width: 100%;
-  height: 100%;
   background: var(--bg);
   color: var(--textColor);
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 .container {
   max-width: 1380px;
   margin-inline: auto;
   padding-inline: 0.75rem;
+}
+.img-container{
+  height: 450px;
+  position: relative;
+}
+.image{
+  object-fit: cover;
 }
 @media screen and (max-width: 1536px) {
   .container {
@@ -48,6 +58,34 @@ body {
 @media screen and (max-width: 768px) {
   .container {
     max-width: 640px;
+  }
+  .nav-menu {
+    position: absolute;
+    top: 6rem;
+    background: var(--primary-bg);
+    color: var(--softBg);
+    width: 100%;
+    height: 100%;
+    right: -100%;
+    transition: all 0.4s ease;
+    opacity: 0;
+  }
+  .show-menu {
+    right: 0;
+    opacity: 1;
+  }
+  .nav-links ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 5rem;
+  }
+  .nav-links ul li {
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #ffffff1a;
   }
 }
 @media screen and (max-width: 640px) {
