@@ -1,10 +1,7 @@
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";  
-import { ThemeContextProvider } from "./context/ThemeContext";
-import ThemeProvider from "./providers/ThemeProvider";
-import Featured from "./components/featured/Featured";
+import Footer from "./components/footer/Footer";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -16,16 +13,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+      </head>
       <body className={dmSans.className}>
-        <ThemeContextProvider>
-          <ThemeProvider>
-            <div className="container">
-              <Navbar />
-              {children}
-              <Footer />
-            </div>
-          </ThemeProvider>
-        </ThemeContextProvider>
+        <div className="container">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

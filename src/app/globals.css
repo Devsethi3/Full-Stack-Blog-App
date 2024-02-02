@@ -33,12 +33,31 @@ body::-webkit-scrollbar {
   margin-inline: auto;
   padding-inline: 0.75rem;
 }
-.img-container{
+.img-container {
   height: 450px;
   position: relative;
 }
-.image{
+.image {
   object-fit: cover;
+}
+.menu {
+  flex: 2;
+}
+.card-list {
+  flex: 5;
+}
+.post-img{
+  position: relative;
+  height: 300px;
+}
+.post-box{
+  min-height: 35vh;
+}
+.ql-container{
+  font-size: 1.5rem !important;
+}
+.quill > .ql-container > .ql-editor.ql-blank::before{
+  color: #b3b3b1;
 }
 @media screen and (max-width: 1536px) {
   .container {
@@ -49,15 +68,44 @@ body::-webkit-scrollbar {
   .container {
     max-width: 1024px;
   }
+  .title {
+    font-size: 2rem;
+  }
+  .category-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .post-group{
+    flex-direction: column;
+  }
 }
 @media screen and (max-width: 1024px) {
   .container {
     max-width: 768px;
   }
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
 }
 @media screen and (max-width: 768px) {
   .container {
     max-width: 640px;
+  }
+  .home-text {
+    font-size: 3.8rem;
+  }
+  .post-title{
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+  .category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .post-content{
+    gap: 1rem;
+  }
+  .post-grid {
+    gap: 1rem;
+    grid-template-columns: 1fr;
   }
   .nav-menu {
     position: absolute;
@@ -91,5 +139,20 @@ body::-webkit-scrollbar {
 @media screen and (max-width: 640px) {
   .container {
     max-width: 475px;
+  }
+  .home-text {
+    font-size: 3rem;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .category-text {
+    font-size: 1rem;
+  }
+  .navlink-gap {
+    gap: 1rem;
+  }
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

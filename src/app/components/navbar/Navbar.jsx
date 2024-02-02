@@ -10,6 +10,7 @@ const Navbar = () => {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <>
       <header className="">
@@ -25,9 +26,9 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div className={`md:block nav-menu`}>
+            <div className={`md:block z-50 nav-menu ${isOpen ? "show-menu" : ""}`}>
               <nav className="nav-links">
-                <ul className="flex items-center gap-10">
+                <ul className="flex dark:text-white items-center gap-10">
                   <li>
                     <Link href="/">Home</Link>
                   </li>
@@ -46,7 +47,8 @@ const Navbar = () => {
                 </ul>
               </nav>
             </div>
-            <div className="flex items-center gap-8">
+
+            <div className="flex items-center navlink-gap gap-8">
               <ThemeToggle />
               <AuthLinks />
               <div className="block md:hidden">

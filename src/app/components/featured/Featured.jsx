@@ -2,20 +2,20 @@ import Image from "next/image";
 
 const Featured = () => {
   return (
-    <div className="my-3">
-      <h1 className="text-7xl">
+    <div className="my-[3.5rem]">
+      <h1 className="text-7xl home-text">
         <strong>Hey, Dev Sethi Here!</strong> Discover my stories and creative
         ideas{" "}
       </h1>
-      <div className="grid grid-cols-2 items-center gap-6 mt-[3rem]">
+      <div className="grid feature-grid grid-cols-2 items-center gap-6 mt-[3rem]">
         <div className="img-container">
-          <Image src="/images/p1.jpeg" className="image" fill />
+          <Image src="/images/p1.jpeg" className="image rounded-md" fill />
         </div>
         <div className="content">
-          <h1 className="text-5xl mb-8 font-semibold">
+          <h1 className="text-5xl title mb-8 font-semibold">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
           </h1>
-          <p>
+          <p className="mb-4">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
             vitae tenetur quis tempore sunt voluptatem! Provident voluptas quam
             minima nobis totam molestiae soluta dolores? Deserunt dicta
@@ -23,9 +23,13 @@ const Featured = () => {
             quisquam excepturi quo iste nesciunt.
           </p>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-            modi ut nobis ducimus autem cumque quam iste eius recusandae alias?
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio
+            corrupti facere tenetur, iste optio voluptatum aliquid recusandae.
+            Dolores neque, aperiam fugit ratione quit.
           </p>
+          <button className="mt-[3rem] dark:bg-gray-800 px-5 py-2 rounded-md bg-gray-300">
+            Read More
+          </button>
         </div>
       </div>
     </div>
