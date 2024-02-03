@@ -1,6 +1,25 @@
+"use client";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
+  const { data, status } = useSession();
+
+  console.log(data, status);
+
+  const router = useRouter();
+
+  if (status === "loading") {
+    return (
+      <>
+        <p>Loading...</p>
+      </>
+    );
+  }
+  if (status === "authenticated") {
+    router.push("/");
+  }
   return (
     <>
       <section className="">
@@ -27,17 +46,20 @@ const LoginPage = () => {
           <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <div className="max-w-xl lg:max-w-3xl">
               <div className="relative -mt-16 block lg:hidden">
-                <h1 className="mt-2 text-white text-2xl font-bold sm:text-3xl md:text-4xl">
+                <h1 className="mt-2 login-heading dark:text-white text-white text-2xl font-bold sm:text-3xl md:text-4xl">
                   Welcome to Squid
                 </h1>
 
-                <p className="mt-4 leading-relaxed ">
+                <p className="mt-4 leading-relaxed login-text">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Eligendi nam dolorum aliquam, quibusdam aperiam voluptatum.
                 </p>
               </div>
               <div className="auth-links flex flex-col gap-5">
-                <button className="flex border-2 border-primary items-center justify-center gap-4 rounded-md py-2.5">
+                <button
+                  onClick={() => signIn("google")}
+                  className="flex border-2 border-primary items-center justify-center gap-4 rounded-md py-2.5"
+                >
                   <Image src="/images/google.png" width={20} height={20} />
                   Login With Google
                 </button>

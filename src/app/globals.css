@@ -29,6 +29,7 @@ body::-webkit-scrollbar {
   display: none;
 }
 .container {
+  overflow-x: hidden;
   max-width: 1380px;
   margin-inline: auto;
   padding-inline: 0.75rem;
@@ -46,17 +47,17 @@ body::-webkit-scrollbar {
 .card-list {
   flex: 5;
 }
-.post-img{
+.post-img {
   position: relative;
   height: 300px;
 }
-.post-box{
+.post-box {
   min-height: 35vh;
 }
-.ql-container{
+.ql-container {
   font-size: 1.5rem !important;
 }
-.quill > .ql-container > .ql-editor.ql-blank::before{
+.quill > .ql-container > .ql-editor.ql-blank::before {
   color: #b3b3b1;
 }
 @media screen and (max-width: 1536px) {
@@ -74,7 +75,7 @@ body::-webkit-scrollbar {
   .category-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-  .post-group{
+  .post-group {
     flex-direction: column;
   }
 }
@@ -90,17 +91,25 @@ body::-webkit-scrollbar {
   .container {
     max-width: 640px;
   }
+  .login-heading{
+    text-align: center;
+    margin: 4rem 0 2rem 0;
+    color: #000;
+  }
+  .login-text{
+    display: none;
+  }
   .home-text {
     font-size: 3.8rem;
   }
-  .post-title{
+  .post-title {
     font-size: 1.5rem;
     line-height: 1.2;
   }
   .category-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .post-content{
+  .post-content {
     gap: 1rem;
   }
   .post-grid {
@@ -112,15 +121,16 @@ body::-webkit-scrollbar {
     top: 6rem;
     background: var(--primary-bg);
     color: var(--softBg);
+    right: 0;
     width: 100%;
     height: 100%;
-    right: -100%;
     transition: all 0.4s ease;
     opacity: 0;
+    z-index: -1;
   }
   .show-menu {
-    right: 0;
     opacity: 1;
+    z-index: 100;
   }
   .nav-links ul {
     display: flex;
@@ -145,6 +155,12 @@ body::-webkit-scrollbar {
   }
   .title {
     font-size: 1.8rem;
+  }
+  .featured{
+    margin-block: 2.5rem;
+  }
+  .navbar{
+    height: 5rem;
   }
   .category-text {
     font-size: 1rem;

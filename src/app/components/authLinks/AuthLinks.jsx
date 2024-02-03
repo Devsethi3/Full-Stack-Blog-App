@@ -1,12 +1,13 @@
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { MdAddCircleOutline } from "react-icons/md";
 
 const AuthLinks = () => {
-  const status = "authenticated";
+  const { status } = useSession();
   return (
     <>
       <div className="sm:flex sm:gap-4">
-        {status === "notauthenticated" ? (
+        {status === "unauthenticated" ? (
           <Link
             className="rounded-md bg-primary px-5 py-2.5 font-semibold text-gray-100 shadow"
             href="/login"
@@ -25,9 +26,12 @@ const AuthLinks = () => {
               </span>
               Add Posts
             </Link>
-            <span className="border-2 rounded-md cursor-pointer border-primary px-5 py-2 font-medium dark:text-white text-black shadow">
+            <button
+              onClick={signOut}
+              className="border-2 rounded-md cursor-pointer border-primary px-5 py-2 font-medium dark:text-white text-black shadow"
+            >
               Logout
-            </span>
+            </button>
           </div>
         )}
       </div>

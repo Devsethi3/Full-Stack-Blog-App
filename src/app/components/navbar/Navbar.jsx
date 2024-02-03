@@ -15,7 +15,7 @@ const Navbar = () => {
     <>
       <header className="">
         <div className="mx-auto">
-          <div className="flex h-[6rem] items-center justify-between">
+          <div className="flex navbar h-[6rem] items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
               <Link
                 className="block text-2xl font-extrabold text-primary"

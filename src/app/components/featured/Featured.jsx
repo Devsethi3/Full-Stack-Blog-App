@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Featured = () => {
   return (
-    <div className="my-[3.5rem]">
+    <div className="my-[2rem] featured">
       <h1 className="text-7xl home-text">
         <strong>Hey, Dev Sethi Here!</strong> Discover my stories and creative
         ideas{" "}
