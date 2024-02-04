@@ -1,66 +1,73 @@
+import Link from "next/link";
 import CategoryItem from "./CategoryItem";
+import Image from "next/image";
+
+const getData = async () => {
+  const res = await fetch("http://localhost:3000/api/categories", {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+  return res.json();
+};
 
 const categories = [
   {
-    href: "/blog",
-    imageSrc: "/images/style.png",
-    label: "Style",
     bgColor: "bg-[#57c4ff70]",
   },
   {
-    href: "/blog",
-    imageSrc: "/images/travel.png",
-    label: "Travel",
     bgColor: "bg-[#ff575770]",
   },
   {
-    href: "/blog",
-    imageSrc: "/images/culture.png",
-    label: "Culture",
     bgColor: "bg-[#73ff5770]",
   },
   {
-    href: "/blog",
-    imageSrc: "/images/style.png",
-    label: "Style",
     bgColor: "bg-[#a357ff70]",
   },
   {
-    href: "/blog",
-    imageSrc: "/images/food.png",
-    label: "Food",
     bgColor: "bg-[#ff9d5770]",
   },
   {
-    href: "/blog",
-    imageSrc: "/images/coding.png",
-    label: "Family",
     bgColor: "bg-[#ff795770]",
   },
   {
-    href: "/blog",
-    imageSrc: "/images/style.png",
-    label: "Style",
     bgColor: "bg-[#57c4ff70]",
   },
   {
-    href: "/blog",
-    imageSrc: "/images/food.png",
-    label: "Shopping",
     bgColor: "bg-[#ffee5770]",
   },
 ];
 
-const CategoryList = () => {
+const CategoryList = async () => {
+  const data = await getData();
   return (
     <>
-      <h1 className="text-3xl font-bold mt-[4rem] mb-[2rem]">
-        Popular Categories
-      </h1>
-      <div className="category-grid grid grid-cols-5 gap-4">
-        {categories.map((category, index) => (
-          <CategoryItem key={index} {...category} />
-        ))}
+      <div>
+        <h1 className="text-3xl font-bold">Popular Categories</h1>
+        <div className="category-grid mt-4 grid gap-4 grid-cols-6">
+          {data?.map((item, index) => (
+            <Link key={item.id} href="/blog?cat=style">
+              <div
+                className={`flex items-center py-3 rounded-md ${
+                  categories[index % categories.length].bgColor
+                } py-2 gap-4 justify-center`}
+              >
+                {item.img && (
+                  <Image
+                    className="rounded-full"
+                    src={item.img}
+                    width={32}
+                    height={32}
+                  />
+                )}
+                <p className="font-medium category-text text-[1.1rem]">
+                  {item.title}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </>
   );
