@@ -1,23 +1,34 @@
 import Image from "next/image";
+import Link from "next/link";
 
-const Card = () => {
+const Card = ({ key, item }) => {
   return (
     <div className="post-grid mb-[3rem] grid grid-cols-2 gap-[4rem]">
-      <div className="post-img">
-        <Image src="/images/p1.jpeg" className="image rounded-md" fill />
-      </div>
+      {item.img && (
+        <div className="post-img">
+          <Image src={item.img} className="image rounded-md" fill />
+        </div>
+      )}
       <div className="post-content my-3 flex items-start justify-between flex-col">
         <p className="date text-sm">
-          11.01.2024 - <span className="text-red-500 font-medium">CULTURE</span>
+          {item.createdAt.substring(0, 10)} -{" "}
+          <span className="text-red-500 uppercase font-medium">
+            {item.catSlug}
+          </span>
         </p>
-        <h2 className="text-3xl post-title font-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-        <p className="text-justify text-sm">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, ea
-          tempora! Et similique quia distinctio a perspiciatis nam ea, cum nemo
-          adipisci veritatis facere exercitationem aperiam laudantium omnis
-          tenetur.
-        </p>
-        <button className="font-medium border-b-2 border-red-500">Read More</button>
+        <Link
+          href={`/posts/${item.slug}`}
+          className="text-3xl post-title font-bold"
+        >
+          {item.title}
+        </Link>
+        <p className="text-justify text-sm">{item.desc.substring(0, 50)}</p>
+        <Link
+          href={`/posts/${item.slug}`}
+          className="font-medium border-b-2 border-red-500"
+        >
+          Read More
+        </Link>
       </div>
     </div>
   );

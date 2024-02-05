@@ -1,10 +1,10 @@
-import { Outfit } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import AuthProviders from "./providers/AuthProviders";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Next JS Blog App",
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <AuthProviders>
-        <body className={outfit.className}>
+        <body className={dmSans.className}>
           <div className="container">
             <Navbar />
             {children}

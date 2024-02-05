@@ -1,5 +1,5 @@
 import Link from "next/link";
-import CategoryItem from "./CategoryItem";
+// import CategoryItem from "./CategoryItem";
 import Image from "next/image";
 
 const getData = async () => {
