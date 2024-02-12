@@ -4,31 +4,28 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
-  const { data, status } = useSession();
-
-  console.log(data, status);
+  const { status } = useSession();
 
   const router = useRouter();
 
   if (status === "loading") {
-    return (
-      <>
-        <p>Loading...</p>
-      </>
-    );
+    return <div className={styles.loading}>Loading...</div>;
   }
+
   if (status === "authenticated") {
     router.push("/");
   }
+
   return (
     <>
       <section className="">
         <div className="lg:grid lg:min-h-[80vh] lg:grid-cols-12">
           <section className="relative flex items-end bg-gray-950 lg:col-span-5 lg:h-full xl:col-span-6">
-            <img
+            <Image
               alt="Night"
-              src="https://images.unsplash.com/photo-1617195737496-bc30194e3a19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+              src="/images/food.png"
               className="absolute inset-0 h-full w-full object-cover opacity-80"
+              fill
             />
 
             <div className="hidden lg:relative lg:block text-white lg:p-12">

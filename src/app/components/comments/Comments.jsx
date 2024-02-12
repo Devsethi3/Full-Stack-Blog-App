@@ -1,9 +1,26 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { GrSend } from "react-icons/gr";
+import useSWR from "swr";
 
-const Comments = () => {
-  const status = "authenticated";
+const fetcher = async () => {
+  const res = await fetch(url);
+  const data = await res.json();
+  if (!res.ok) {
+    const error = new Error(data.message);
+    throw error;
+  }
+  return data;
+};
+
+const Comments = ({ postSlug }) => {
+  const status = useSession();
+  const { data, isLoading } = useSWR(
+    `https://localhot:3000/api/comments?postSlug=${postSlug}`,
+    fetcher
+  );
   return (
     <>
       <h1 className="mt-[4rem] text-2xl font-bold mb-4">Comments</h1>
@@ -22,72 +39,29 @@ const Comments = () => {
         <Link href="/login">Login to write to comment</Link>
       )}
       <div>
-        <div className="comment">
-          <div className="flex items-center gap-4 mt-[3rem]">
-            <Image
-              className="rounded-full"
-              src="/images/p1.jpeg"
-              width={35}
-              height={35}
-            />
-            <div className="flex flex-col">
-              <p className="font-medium">William Randolph</p>
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                12 January 2024
-              </span>
-            </div>
-          </div>
-          <p className="mt-4">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
-            laborum, ut minima animi molestiae dicta numquam deleniti optio,
-            tempora iure beatae voluptas harum repellat et doloremque error
-            maiores quaerat laudantium.
-          </p>
-        </div>
-        <div className="comment">
-          <div className="flex items-center gap-4 mt-[3rem]">
-            <Image
-              className="rounded-full"
-              src="/images/p1.jpeg"
-              width={35}
-              height={35}
-            />
-            <div className="flex flex-col">
-              <p className="font-medium">William Randolph</p>
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                12 January 2024
-              </span>
-            </div>
-          </div>
-          <p className="mt-4">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
-            laborum, ut minima animi molestiae dicta numquam deleniti optio,
-            tempora iure beatae voluptas harum repellat et doloremque error
-            maiores quaerat laudantium.
-          </p>
-        </div>
-        <div className="comment">
-          <div className="flex items-center gap-4 mt-[3rem]">
-            <Image
-              className="rounded-full"
-              src="/images/p1.jpeg"
-              width={35}
-              height={35}
-            />
-            <div className="flex flex-col">
-              <p className="font-medium">William Randolph</p>
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                12 January 2024
-              </span>
-            </div>
-          </div>
-          <p className="mt-4">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
-            laborum, ut minima animi molestiae dicta numquam deleniti optio,
-            tempora iure beatae voluptas harum repellat et doloremque error
-            maiores quaerat laudantium.
-          </p>
-        </div>
+        {isLoading
+          ? "loading"
+          : data?.map((item) => (
+              <div key={item._id} className="comment">
+                <div className="flex items-center gap-4 mt-[3rem]">
+                  {item.user.image && (
+                    <Image
+                      className="rounded-full"
+                      src={item.user.image}
+                      width={35}
+                      height={35}
+                    />
+                  )}
+                  <div className="flex flex-col">
+                    <p className="font-medium">{item.user.name}</p>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      {item.createdAt}
+                    </span>
+                  </div>
+                </div>
+                <p className="mt-4">{item.desc}</p>
+              </div>
+            ))}
       </div>
     </>
   );

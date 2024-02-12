@@ -6,9 +6,8 @@ const getData = async (slug) => {
   const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
     cache: "no-store",
   });
-
   if (!res.ok) {
-    console.log("something went wrong", Error);
+    throw new Error("Failed");
   }
 
   return res.json();
@@ -16,6 +15,7 @@ const getData = async (slug) => {
 
 const SinglePage = async ({ params }) => {
   const { slug } = params;
+
   const data = await getData(slug);
 
   // Check if data and data.user are defined before accessing properties
